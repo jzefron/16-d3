@@ -70,15 +70,17 @@ d3.csv('assets/data/data.csv').then( function( data) {
     //   .attr("fill", "green")
       .attr("opacity", ".5")
       
-    var textGroup = chartGroup.selectAll('text')
+    var textGroup = chartGroup.selectAll('textSt')
     .data(data)
     .enter()
     .append('text')
+    .classed('stateText',true)
     .text(d=>d.abbr)
     .attr('x',d=>xLinearScale(d.income))
     .attr('y',d=>yLinearScale(d.obesity))
     .attr('dy','0.3em')
-    .classed('stateText',true)
+    .attr('dx','-0.7em');
+
       
           // Create axes labels
     chartGroup.append("text")
