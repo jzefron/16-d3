@@ -66,11 +66,19 @@ d3.csv('assets/data/data.csv').then( function( data) {
       .attr("cx", d => xLinearScale(d.income))
       .attr("cy", d => yLinearScale(d.obesity))
       .attr("r", "15")
-      .attr("fill", "green")
+      .classed('stateCircle',true)
+    //   .attr("fill", "green")
       .attr("opacity", ".5")
-      .append('text')
-      .classd('stateText')
-      .text(d=>d.abbr);
+      
+    var textGroup = chartGroup.selectAll('text')
+    .data(data)
+    .enter()
+    .append('text')
+    .text(d=>d.abbr)
+    .attr('x',d=>xLinearScale(d.income))
+    .attr('y',d=>yLinearScale(d.obesity))
+    .attr('dy','0.3em')
+    .classed('stateText',true)
       
           // Create axes labels
     chartGroup.append("text")
